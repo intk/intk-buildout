@@ -1,0 +1,20 @@
+#!/usr/bin/python
+# This script cleans out old backups to avoid disk clutter
+
+import sys
+import os
+import datetime
+logfile = "path/to/client-website/logs/weeklybackup-log.log"
+
+log = ""
+
+today = datetime.date.today()
+log = log + "------- INTK Backup: %s"%today + " ---------\n"
+
+log = log + "Making sync backup now ...\n"
+os.system("/path/to/client-website/Plone/zeocluster/bin/backup >> /dev/null")
+log = log + "Sync backup finish."
+
+logFile = open(logfile, "a")
+logFile.write(log)
+logFile.close()
